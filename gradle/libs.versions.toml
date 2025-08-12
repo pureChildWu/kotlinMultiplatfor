@@ -1,0 +1,93 @@
+## Here's my code:
+[versions]
+agp = "8.7.3"
+android-compileSdk = "35"
+android-minSdk = "24"
+android-targetSdk = "35"
+androidx-activity = "1.10.1"
+androidx-appcompat = "1.7.1"
+androidx-core = "1.16.0"
+androidx-espresso = "3.6.1"
+androidx-lifecycle = "2.9.1"
+androidx-testExt = "1.2.1"
+composeMultiplatform = "1.8.2"
+junit = "4.13.2"
+kotlin = "2.2.0"
+voyager = "1.1.0-beta02"
+moko-resources = "0.25.0" # 推荐 ≥0.23.0:cite[4]
+kamel = "1.0.7"
+ktor = "2.3.7"
+
+[libraries]
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+kotlin-testJunit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
+junit = { module = "junit:junit", version.ref = "junit" }
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }
+androidx-testExt-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-testExt" }
+androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "androidx-espresso" }
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
+androidx-lifecycle-viewmodelCompose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-runtimeCompose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
+
+#voyager-navigator: Voyager 的核心导航库，提供了基于屏幕（Screen）的导航机制，类似于 Android 的 Compose Navigation，但支持多平台（Android, iOS, Desktop, Web）且更简单易用。
+voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
+#yager-screenModel: 提供与导航集成的 Screen Model（屏幕模型）支持，类似于 Android 的 ViewModel，用于管理屏幕的状态和逻辑，并且生命周期与屏幕绑定。
+voyager-screenModel = { module = "cafe.adriel.voyager:voyager-screenmodel", version.ref = "voyager" }
+#voyager-bottomSheetNavigator: 提供底部表单（Bottom Sheet）导航器，用于在 Voyager 导航中实现底部表单的导航。
+voyager-bottomSheetNavigator = { module = "cafe.adriel.voyager:voyager-bottom-sheet-navigator", version.ref = "voyager" }
+#voyager-tabNavigator: 提供标签页（Tab）导航器，用于在 Voyager 中实现标签页导航。
+voyager-tabNavigator = { module = "cafe.adriel.voyager:voyager-tab-navigator", version.ref = "voyager" }
+#voyager-transitions: 提供屏幕切换时的过渡动画效果
+voyager-transitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyager" }
+#voyager-koin: 提供与 Koin 依赖注入框架的集成，使得在 Voyager 导航中能够使用 Koin 进行依赖注入。
+voyager-koin = { module = "cafe.adriel.voyager:voyager-koin", version.ref = "voyager" }
+
+#android only
+#voyager-hilt: 提供与 Hilt 依赖注入框架的集成（Hilt 是 Android 的官方依赖注入库，基于 Dagger），使得在 Voyager 导航中能够使用 Hilt 进行依赖注入。
+voyager-hilt = { module = "cafe.adriel.voyager:voyager-hilt", version.ref = "voyager" }
+#oyager-kodein: 提供与 Kodein 依赖注入框架的集成，使得在 Voyager 导航中能够使用 Kodein 进行依赖注入。
+voyager-kodein = { module = "cafe.adriel.voyager:voyager-kodein", version.ref = "voyager" }
+#voyager-rxjava: 提供与 RxJava 的集成，使得在 Voyager 中可以使用 RxJava 的响应式编程特性。
+voyager-rxjava = { module = "cafe.adriel.voyager:voyager-rxjava", version.ref = "voyager" }
+
+# 添加 MOKO 依赖库
+moko-resources = { module = "dev.icerock.moko:resources", version.ref = "moko-resources" }
+moko-resources-compose = { module = "dev.icerock.moko:resources-compose", version.ref = "moko-resources" } # 如需 Compose 支持
+moko-resources-generator = { module = "dev.icerock.moko:resources-generator", version.ref = "moko-resources" }
+moko-resources-test = { module = "dev.icerock.moko:resources-test", version.ref = "moko-resources" }
+
+# 更新Kamel依赖
+kamel-image-default = { module = "media.kamel:kamel-image-default", version.ref = "kamel" }
+#为了进行更精细的设置，您可以选择要包含在项目中的模块：
+kamel-image = { module = "media.kamel:kamel-image", version.ref = "kamel" }
+kamel-decoder-image-bitmap = { module = "media.kamel:kamel-decoder-image-bitmap", version.ref = "kamel" }
+kamel-decoder-image-bitmap-resizing = { module = "media.kamel:kamel-decoder-image-bitmap-resizing", version.ref = "kamel" }
+kamel-decoder-image-vector = { module = "media.kamel:kamel-decoder-image-vector", version.ref = "kamel" }
+kamel-decoder-svg-batik = { module = "media.kamel:kamel-decoder-svg-batik", version.ref = "kamel" }
+kamel-decoder-svg-std = { module = "media.kamel:kamel-decoder-svg-std", version.ref = "kamel" }
+kamel-decoder-animated-image = { module = "media.kamel:kamel-decoder-animated-image", version.ref = "kamel" }
+kamel-fetcher-resources-jvm = { module = "media.kamel:kamel-fetcher-resources-jvm", version.ref = "kamel" }
+kamel-fetcher-resources-android = { module = "media.kamel:kamel-fetcher-resources-android", version.ref = "kamel" }
+#ktor
+ktor-client-logging = {module = "io.ktor:ktor-client-logging", version.ref = "ktor"}
+ktor-client-core = {module = "io.ktor:ktor-client-core", version.ref = "ktor"}
+ktor-client-cio = {module = "io.ktor:ktor-client-cio", version.ref = "ktor"}
+ktor-client-json = {module = "io.ktor:ktor-client-json", version.ref = "ktor"}
+ktor-client-serialization = {module = "io.ktor:ktor-client-serialization", version.ref = "ktor"}
+ktor-client-plugins = {module = "io.ktor:ktor-client-plugins", version.ref = "ktor"}
+# 重新添加 timeout 依赖
+ktor-client-timeout = {module = "io.ktor:ktor-client-timeout", version.ref = "ktor"}
+ktor-client-okhttp = {module = "io.ktor:ktor-client-okhttp", version.ref = "ktor"}
+
+# 添加Compose运行时依赖
+compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "composeMultiplatform" }
+
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
+composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
+composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+moko-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko-resources" }
