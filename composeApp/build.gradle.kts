@@ -36,7 +36,13 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
-//            implementation(libs.ktor.client.okhttp)
+            implementation(libs.ktor.client.okhttp)
+//            implementation(libs.accompanist.permissions)
+//            implementation(libs.camera.core)
+//            implementation(libs.camera.camera2)
+//            implementation(libs.camera.lifecycle)
+//            implementation(libs.camera.view)
+//            implementation(libs.image.cropper)
             // Android 特定的 Kamel 组件
 //            implementation(libs.kamel.decoder.image.bitmap.resizing)
 //            implementation(libs.kamel.fetcher.resources.android)
@@ -62,15 +68,18 @@ kotlin {
             // 添加Kamel图片加载库
             implementation(libs.kamel.image.default)
 
-            // 添加Ktor客户端
+            // Ktor 客户端
             implementation(libs.ktor.client.logging)
-//            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
 //            implementation(libs.ktor.client.cio)
-//            implementation(libs.ktor.client.json)
-//            implementation(libs.ktor.client.serialization)
+//            implementation(libs.ktor.client.plugins.timeout)
+//            implementation(libs.ktor.client.plugins)
         }
-        commonTest.dependencies {
-            implementation(libs.kotlin.test)
+
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
         }
     }
 }

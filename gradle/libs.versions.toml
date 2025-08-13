@@ -16,8 +16,16 @@ kotlin = "2.2.0"
 voyager = "1.1.0-beta02"
 moko-resources = "0.25.0" # 推荐 ≥0.23.0:cite[4]
 kamel = "1.0.7"
-ktor = "2.3.7"
+ktor = "3.0.0"
 
+accompanist = "0.40.0"
+cameraX = "1.4.0"
+imageCropper = "4.5.0"
+
+
+#表明 Kamel 内部使用了 Ktor 的 HttpTimeout 插件，但：
+#您使用的是 Ktor 2.3.7 (2.x)
+#Kamel 0.8+ 需要 Ktor 3.x 的插件格式
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-testJunit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
@@ -70,18 +78,45 @@ kamel-decoder-animated-image = { module = "media.kamel:kamel-decoder-animated-im
 kamel-fetcher-resources-jvm = { module = "media.kamel:kamel-fetcher-resources-jvm", version.ref = "kamel" }
 kamel-fetcher-resources-android = { module = "media.kamel:kamel-fetcher-resources-android", version.ref = "kamel" }
 #ktor
+#这段代码配置了 Ktor 客户端依赖项，用于网络请求和数据处理：
+#
+#1. `ktor.client.logging` - 提供网络请求日志功能
+#2. `ktor.client.core` - Ktor 客户端核心库
+#3. `ktor.client.cio` - 基于协程的 I/O 引擎实现
+#4. `ktor.client.content.negotiation` - 内容协商插件，用于自动序列化/反序列化
+#5. `ktor.serialization.kotlinx.json` - Kotlinx 序列化支持，用于 JSON 格式处理
+#
+#被注释掉的 `ktor.client.plugins` 是 Ktor 客户端插件的通用依赖（当前未启用）。
 ktor-client-logging = {module = "io.ktor:ktor-client-logging", version.ref = "ktor"}
 ktor-client-core = {module = "io.ktor:ktor-client-core", version.ref = "ktor"}
 ktor-client-cio = {module = "io.ktor:ktor-client-cio", version.ref = "ktor"}
-ktor-client-json = {module = "io.ktor:ktor-client-json", version.ref = "ktor"}
-ktor-client-serialization = {module = "io.ktor:ktor-client-serialization", version.ref = "ktor"}
+# 移除冲突的旧版序列化依赖
+#ktor-client-serialization = {module = "io.ktor:ktor-client-serialization", version.ref = "ktor"}
+#ktor-client-json = {module = "io.ktor:ktor-client-json", version.ref = "ktor"}
+# 添加新版 JSON 序列化支持
+ktor-serialization-kotlinx-json = {module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor"}
+# 内容协商 (JSON)
+ktor-client-content-negotiation = {module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor"}
+#添加超时依赖
 ktor-client-plugins = {module = "io.ktor:ktor-client-plugins", version.ref = "ktor"}
-# 重新添加 timeout 依赖
-ktor-client-timeout = {module = "io.ktor:ktor-client-timeout", version.ref = "ktor"}
+ktor-client-plugins-timeout = { module = "io.ktor:ktor-client-plugins-timeout", version.ref = "ktor" }
+#Android 引擎
 ktor-client-okhttp = {module = "io.ktor:ktor-client-okhttp", version.ref = "ktor"}
+# iOS 引擎
+ktor-client-darwin = {module = "io.ktor:ktor-client-darwin", version.ref = "ktor"}
 
 # 添加Compose运行时依赖
 compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "composeMultiplatform" }
+
+# 权限管理
+accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist" }
+# 相机
+camera-core = { module = "androidx.camera:camera-core", version.ref = "cameraX" }
+camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "cameraX" }
+camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "cameraX" }
+camera-view = { module = "androidx.camera:camera-view", version.ref = "cameraX" }
+# 图片裁剪
+image-cropper = { module = "com.vanniktech:android-image-cropper", version.ref = "imageCropper" }
 
 
 [plugins]

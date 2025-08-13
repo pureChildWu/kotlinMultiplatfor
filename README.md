@@ -68,3 +68,19 @@ fun initKamel() = KamelConfig {
 4. 包含清晰的项目结构说明
 5. 添加未来计划增加期待感
 6. 优化了排版和可读性
+
+这个版本：V1.0.1
+composeApp/
+├── src/
+│   ├── commonMain/
+│   │   └── kotlin/com/ax/tototoproj/media/
+│   │       ├── ImagePicker.kt
+│   │       └── MediaPicker.kt
+│   ├── androidMain/
+│   │   └── kotlin/com/ax/tototoproj/media/
+│   │       ├── AndroidImagePicker.kt
+│   │       └── AndroidCameraController.kt
+│   └── iosMain/
+│       └── kotlin/com/ax/tototoproj/media/
+│           ├── IOSImagePicker.kt
+│           └── IOSCameraController.kt

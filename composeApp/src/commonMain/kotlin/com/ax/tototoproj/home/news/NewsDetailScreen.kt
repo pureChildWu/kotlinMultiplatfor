@@ -5,6 +5,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,6 +24,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -55,6 +57,11 @@ import kotlinx.coroutines.delay
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberModalBottomSheetState
+import androidx.compose.runtime.rememberCoroutineScope
+import com.ax.tototoproj.network.ApiService
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
+import kotlinx.coroutines.launch
 
 /**
  * 新闻详情屏幕
@@ -63,6 +70,13 @@ class NewsDetailScreen(private val newsItem: ListItem) : Screen {
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     override fun Content() {
+
+        var apiResult by remember { mutableStateOf<String?>(null) }
+        var isLoading by remember { mutableStateOf(false) }
+        val coroutineScope = rememberCoroutineScope()
+        val apiService = remember { ApiService() }
+
+
         val navigator = LocalNavigator.currentOrThrow
         var contentVisible by remember { mutableStateOf(false) }
         // 添加弹窗状态控制
@@ -99,6 +113,30 @@ class NewsDetailScreen(private val newsItem: ListItem) : Screen {
                             IconButton(onClick = { /* 分享 */ }) {
                                 Icon(Icons.Default.Share, contentDescription = "分享")
                             }
+                            IconButton(
+                                onClick = {
+                                    isLoading = true
+                                    apiResult = null
+                                    coroutineScope.launch(Dispatchers.IO) {
+                                        try {
+                                            val posts = apiService.getPosts()
+                                            apiResult = "API调用成功！获取到 ${posts.size} 条数据"
+                                        } catch (e: Exception) {
+                                            apiResult = "API调用失败: ${e.message}"
+                                        } finally {
+                                            isLoading = false
+                                        }
+                                    }
+
+                                },
+                                enabled = !isLoading
+                            ) {
+                                Icon(
+                                    Icons.Default.Refresh,
+                                    contentDescription = "测试API",
+                                    tint = if (isLoading) Color.Gray else MaterialTheme.colorScheme.primary
+                                )
+                            }
                         }
                     )
                 }
@@ -112,7 +150,7 @@ class NewsDetailScreen(private val newsItem: ListItem) : Screen {
                     AnimatedVisibility(
                         visible = contentVisible,
                         enter = fadeIn(animationSpec = tween(500)) +
-                            slideInVertically(animationSpec = tween(500, delayMillis = 100))
+                                slideInVertically(animationSpec = tween(500, delayMillis = 100))
                     ) {
                         Column(
                             modifier = Modifier
@@ -250,6 +288,33 @@ class NewsDetailScreen(private val newsItem: ListItem) : Screen {
                     }
                 )
             }
+
+            // 结果弹窗
+            apiResult?.let { result ->
+                AlertDialog(
+                    onDismissRequest = { apiResult = null },
+                    title = { Text("API测试结果") },
+                    text = { Text(result) },
+                    confirmButton = {
+                        TextButton(onClick = { apiResult = null }) {
+                            Text("确定")
+                        }
+                    }
+                )
+            }
+
+            // 加载指示器
+            if (isLoading) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(Color.Black.copy(alpha = 0.5f)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text("API调用中...", color = Color.White, style = MaterialTheme.typography.titleMedium)
+                }
+            }
         }
     }
+
 }
