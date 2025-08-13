@@ -50,6 +50,7 @@ fun initKamel() {
 //                cacheControl(CacheControl.MaxAge(maxAgeSeconds = 10000))
 //            }
 
+            // 安装 HttpRequestRetry 插件
             install(HttpRequestRetry) {
                 maxRetries = 3
                 retryIf { httpRequest, httpResponse ->
@@ -57,10 +58,8 @@ fun initKamel() {
                 }
             }
 
-            // 安装 HttpTimeout 插件
-            install(HttpTimeout) {
-                requestTimeoutMillis = 10000 // 30秒超时
-            }
+            // 移除重复的 HttpTimeout 配置
+            // 超时设置已在 HttpClient.kt 中统一配置
 
             // Requires adding "io.ktor:ktor-client-logging:$ktor_version"
             Logging {

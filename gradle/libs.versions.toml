@@ -16,7 +16,8 @@ kotlin = "2.2.0"
 voyager = "1.1.0-beta02"
 moko-resources = "0.25.0" # 推荐 ≥0.23.0:cite[4]
 kamel = "1.0.7"
-ktor = "3.0.0"
+ktor = "3.2.3"
+kotlinxSerialization = "1.6.0" # 使用最新稳定版
 
 accompanist = "0.40.0"
 cameraX = "1.4.0"
@@ -65,6 +66,8 @@ moko-resources-compose = { module = "dev.icerock.moko:resources-compose", versio
 moko-resources-generator = { module = "dev.icerock.moko:resources-generator", version.ref = "moko-resources" }
 moko-resources-test = { module = "dev.icerock.moko:resources-test", version.ref = "moko-resources" }
 
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
+
 # 更新Kamel依赖
 kamel-image-default = { module = "media.kamel:kamel-image-default", version.ref = "kamel" }
 #为了进行更精细的设置，您可以选择要包含在项目中的模块：
@@ -92,7 +95,7 @@ ktor-client-core = {module = "io.ktor:ktor-client-core", version.ref = "ktor"}
 ktor-client-cio = {module = "io.ktor:ktor-client-cio", version.ref = "ktor"}
 # 移除冲突的旧版序列化依赖
 #ktor-client-serialization = {module = "io.ktor:ktor-client-serialization", version.ref = "ktor"}
-#ktor-client-json = {module = "io.ktor:ktor-client-json", version.ref = "ktor"}
+ktor-client-json = {module = "io.ktor:ktor-client-json", version.ref = "ktor"}
 # 添加新版 JSON 序列化支持
 ktor-serialization-kotlinx-json = {module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor"}
 # 内容协商 (JSON)

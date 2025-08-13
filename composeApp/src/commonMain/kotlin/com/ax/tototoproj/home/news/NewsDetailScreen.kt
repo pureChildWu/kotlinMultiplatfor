@@ -119,7 +119,7 @@ class NewsDetailScreen(private val newsItem: ListItem) : Screen {
                                     apiResult = null
                                     coroutineScope.launch(Dispatchers.IO) {
                                         try {
-                                            val posts = apiService.getPosts()
+                                            val posts = apiService.getPostsList()
                                             apiResult = "API调用成功！获取到 ${posts.size} 条数据"
                                         } catch (e: Exception) {
                                             apiResult = "API调用失败: ${e.message}"

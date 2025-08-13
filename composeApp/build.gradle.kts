@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.moko.resources) // 应用 MOKO 插件:cite[2]:cite[3]
+    kotlin("plugin.serialization") version libs.versions.kotlin.get()
 }
 
 kotlin {
@@ -73,9 +74,7 @@ kotlin {
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
-//            implementation(libs.ktor.client.cio)
-//            implementation(libs.ktor.client.plugins.timeout)
-//            implementation(libs.ktor.client.plugins)
+            implementation(libs.ktor.client.cio)
         }
 
         iosMain.dependencies {
