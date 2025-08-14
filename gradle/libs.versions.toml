@@ -23,6 +23,8 @@ accompanist = "0.40.0"
 cameraX = "1.4.0"
 imageCropper = "4.5.0"
 
+koin = "3.5.3"
+sqldelight = "2.0.1"
 
 #表明 Kamel 内部使用了 Ktor 的 HttpTimeout 插件，但：
 #您使用的是 Ktor 2.3.7 (2.x)
@@ -129,3 +131,6 @@ composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "composeMul
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 moko-resources = { id = "dev.icerock.mobile.multiplatform-resources", version.ref = "moko-resources" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
+koin = { id = "io.insert.koin", version.ref = "koin" }
