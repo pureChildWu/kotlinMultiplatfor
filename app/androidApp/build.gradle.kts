@@ -12,7 +12,7 @@ android {
 
     namespace = "com.ax.tototoproj"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
-    compileSdkVersion = "android-31"
+    compileSdkVersion = "android-35"
 //    sourceSets["main"].res.srcDirs(
 //        "src/androidMain/res",
 //        "${buildDir}/generated/moko/androidMain/res"
@@ -57,20 +57,7 @@ dependencies {
     implementation(project(":features:feature-auth"))
     implementation(project(":features:feature-home"))
 
-    // Compose
-//    implementation(libs.compose.ui)
-//    implementation(libs.compose.ui.tooling.preview)
-//    implementation(libs.compose.material3)
-//    implementation(libs.compose.activity)
-//
-//    // Koin
-//    implementation(libs.koin.android)
-//    implementation(libs.koin.compose)
-//
-//    // Voyager
-//    implementation(libs.voyager.koin)
-//
-//    androidTestImplementation(libs.compose.ui.test.junit4)
-//    debugImplementation(libs.compose.ui.tooling)
-//    debugImplementation(libs.compose.ui.test.manifest)
+    implementation(compose.preview)
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.ktor.client.okhttp)
 }

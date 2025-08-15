@@ -96,7 +96,7 @@ multiplatformResources {
 
 android {
 //    compileSdk = libs.versions.android.compileSdk.get().toInt()
-
+    namespace = "com.ax.tototoproj"
     sourceSets["main"].res.srcDirs(
         "src/androidMain/res",
         "${buildDir}/generated/moko/androidMain/res"
