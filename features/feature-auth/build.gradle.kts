@@ -80,19 +80,19 @@ kotlin {
 }
 
 // 关键配置：指定资源包名和位置
-multiplatformResources {
-    resourcesPackage = "com.ax.tototoproj" // 必须与你的包名一致
-    resourcesClassName = "MR" // 生成的类名
-//    resourcesVisibility.set(MRVisibility.Internal) // optional, default Public
-    iosBaseLocalizationRegion.set("en") // optional, default "en"
-    iosMinimalDeploymentTarget.set("11.0") // optional, default "9.0"
-    resourcesSourceSets {
-        getByName("commonMain").srcDirs(  // 将jvmMain改为androidMain
-//            File(projectDir,"src/commonMain/resources")
-            "src/commonMain/resources"  // 修改为这个路径
-        )
-    }
-}
+//multiplatformResources {
+//    resourcesPackage = "com.ax.tototoproj" // 必须与你的包名一致
+//    resourcesClassName = "MR" // 生成的类名
+////    resourcesVisibility.set(MRVisibility.Internal) // optional, default Public
+//    iosBaseLocalizationRegion.set("en") // optional, default "en"
+//    iosMinimalDeploymentTarget.set("11.0") // optional, default "9.0"
+//    resourcesSourceSets {
+//        getByName("commonMain").srcDirs(  // 将jvmMain改为androidMain
+////            File(projectDir,"src/commonMain/resources")
+//            "src/commonMain/resources"  // 修改为这个路径
+//        )
+//    }
+//}
 
 android {
 //    compileSdk = libs.versions.android.compileSdk.get().toInt()
@@ -101,11 +101,11 @@ android {
         "src/androidMain/res",
         "${buildDir}/generated/moko/androidMain/res"
     )
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        compileSdkVersion = "android-31"
     }
     packaging {
         resources {

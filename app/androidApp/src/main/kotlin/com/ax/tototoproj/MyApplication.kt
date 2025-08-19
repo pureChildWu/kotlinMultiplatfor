@@ -21,10 +21,10 @@ class MyApplication : Application() {
         Log.d("AppDebug", "Checking permission states...")
 
         // 小米设备特殊处理
-        if (Build.MANUFACTURER.equals("Xiaomi", ignoreCase = true)) {
-            Log.d("AppDebug", "Xiaomi device detected")
-            requestXiaomiPermissions()
-        }
+//        if (Build.MANUFACTURER.equals("Xiaomi", ignoreCase = true)) {
+//            Log.d("AppDebug", "Xiaomi device detected")
+//            requestXiaomiPermissions()
+//        }
     }
 
     private fun requestXiaomiPermissions() {

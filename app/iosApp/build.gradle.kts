@@ -17,7 +17,7 @@ kotlin {
             // 功能模块
             implementation(project(":features:feature-auth"))
             implementation(project(":features:feature-home"))
-
+//            implementation(project(":ui"))
             // Compose
             implementation(compose.ui)
             implementation(compose.foundation)
