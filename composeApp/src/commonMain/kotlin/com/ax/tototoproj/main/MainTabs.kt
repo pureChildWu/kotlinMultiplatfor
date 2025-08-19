@@ -1,15 +1,22 @@
 package com.ax.tototoproj.main
 
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.navigator.tab.TabNavigator
 import com.ax.tototoproj.MR
+import com.ax.tototoproj.demo.CenterTab
 import com.ax.tototoproj.home.HomeTab
 import com.ax.tototoproj.list.ListTab
 import com.ax.tototoproj.mine.MineTab
@@ -48,6 +55,13 @@ fun MainTabs() {
                         onClick = { tabNavigator.current = ListTab },
                         icon = if (tabNavigator.current == ListTab) MR.images.list_icon_selected else MR.images.list_icon,
                         label = "列表"
+                    )
+
+                    // 新增中间突出Tab
+                    CenterTabButton(
+                        selected = tabNavigator.current == CenterTab,
+                        onClick = { tabNavigator.current = CenterTab },
+                        icon = if (tabNavigator.current == CenterTab) MR.images.setting_icon else MR.images.setting_icon_selected
                     )
 
                     // 网页标签
@@ -105,4 +119,36 @@ fun TabButton(
         )
     }
 }
+
+// 新增中间突出Tab组件
+@Composable
+fun CenterTabButton(
+    selected: Boolean,
+    onClick: () -> Unit,
+    icon: ImageResource
+) {
+    val color = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
+    val elevation by animateDpAsState(if (selected) 8.dp else 0.dp, animationSpec = tween(300))
+    val scale by animateFloatAsState(if (selected) 1.2f else 1f, animationSpec = tween(300))
+
+    Box(
+        modifier = Modifier
+            .size(60.dp)
+            .offset(y = (-15).dp) // 向上突出
+            .shadow(elevation = elevation, shape = CircleShape)
+            .background(MaterialTheme.colorScheme.surface, CircleShape)
+            .clickable(onClick = onClick),
+        contentAlignment = Alignment.Center
+    ) {
+        Icon(
+            painter = painterResource(icon),
+            contentDescription = "中心",
+            tint = color,
+            modifier = Modifier
+                .size(32.dp)
+                .scale(scale)
+        )
+    }
+}
+
 
