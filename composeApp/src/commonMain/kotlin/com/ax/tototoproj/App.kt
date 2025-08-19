@@ -2,6 +2,7 @@ package com.ax.tototoproj
 
 import androidx.compose.runtime.Composable
 import cafe.adriel.voyager.navigator.Navigator
+import com.trees.composeui.components.ToastHost
 import io.kamel.core.config.DefaultCacheSize
 import io.kamel.core.config.KamelConfig
 import io.kamel.core.config.fileFetcher
@@ -23,6 +24,9 @@ fun App() {
     initKamel()
     // 使用 Navigator 管理主页面
     Navigator(LoginScreen())
+
+    // 添加Toast宿主到根布局
+//    ToastHost()
 }
 
 fun initKamel() {

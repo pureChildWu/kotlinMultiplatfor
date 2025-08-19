@@ -88,6 +88,50 @@ class CenterDemoScreen : Screen{
                         )
                     }
                 }
+
+                item {
+                    Box(
+                        modifier = Modifier
+                            .clickable {
+                                navigator.parent?.push(DialogScreen())
+                            }
+                            .background(Color(0xFF000000), shape = RoundedCornerShape(10.dp))
+                            .size(200.dp, 40.dp),
+                        contentAlignment = Alignment.Center // 添加这行确保内容居中
+                    ) {
+                        Text(
+                            "Dialog",
+                            style = TextStyle(
+                                color = Color.White,
+                                fontSize = 15.sp,
+                                textAlign = TextAlign.Center // 水平居中
+                            ),
+                            modifier = Modifier.wrapContentHeight(Alignment.CenterVertically) // 垂直居中
+                        )
+                    }
+                }
+
+                item {
+                    Box(
+                        modifier = Modifier
+                            .clickable {
+                                navigator.parent?.push(ToastScreen())
+                            }
+                            .background(Color(0xFF000000), shape = RoundedCornerShape(10.dp))
+                            .size(200.dp, 40.dp),
+                        contentAlignment = Alignment.Center // 添加这行确保内容居中
+                    ) {
+                        Text(
+                            "Toast",
+                            style = TextStyle(
+                                color = Color.White,
+                                fontSize = 15.sp,
+                                textAlign = TextAlign.Center // 水平居中
+                            ),
+                            modifier = Modifier.wrapContentHeight(Alignment.CenterVertically) // 垂直居中
+                        )
+                    }
+                }
             }
 
         }
